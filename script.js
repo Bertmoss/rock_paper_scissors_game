@@ -37,19 +37,25 @@ function determineWinner(user, computer) {
   user = user.toUpperCase();
   computer = computer.toUpperCase();
   if (user === computer) {
-    return "It's a tie!";
+    tiedGames.push(1);
+    return alert("It's a tie!");
   } else if (
     (user === "ROCK" && computer === "SCISSORS") ||
     (user === "SCISSORS" && computer === "PAPER") ||
     (user === "PAPER" && computer === "ROCK")
   ) {
     scoreUser.push(1);
-    return `You win, ${user.toLowerCase()} beats ${computer.toLowerCase()}!`;
+    return alert(
+      `You win, ${user.toLowerCase()} beats ${computer.toLowerCase()}!`
+    );
   } else {
     scoreComputer.push(1);
-    return `You lose, ${computer.toLowerCase()} beats ${user.toLowerCase()}!`;
+    return alert(
+      `You lose, ${computer.toLowerCase()} beats ${user.toLowerCase()}!`
+    );
   }
 }
+let tiedGames = [];
 let scoreUser = [];
 let scoreComputer = [];
 
@@ -58,13 +64,22 @@ for (let i = 1; i <= 5; i++) {
   determineWinner(humanPlay(), computerPlay());
 }
 
-function overallWinner(scoreOne, scoreTwo) {
+function overallWinner(scoreOne, scoreTwo, scoreThree) {
   if (scoreOne.length > scoreTwo.length) {
-    return `You are a winner! You: ${scoreOne.length} Computer: ${scoreTwo.length}`;
+    return alert(`You are a winner! 
+    You: ${scoreOne.length} 
+    Computer: ${scoreTwo.length} 
+    Tied Games: ${scoreThree.length}`);
   } else if (scoreOne.length < scoreTwo.length) {
-    return `You are a loser! You: ${scoreOne.length} Computer: ${scoreTwo.length}`;
+    return alert(`You are a loser! 
+    You: ${scoreOne.length} 
+    Computer: ${scoreTwo.length} 
+    Tied Games: ${scoreThree.length}`);
   } else {
-    return `It's a tie! You: ${scoreOne.length} Computer: ${scoreTwo.length}`;
+    return alert(`It's a tie! 
+    You: ${scoreOne.length} 
+    Computer: ${scoreTwo.length} 
+    Tied Games: ${scoreThree.length}`);
   }
 }
-overallWinner(scoreUser, scoreComputer);
+overallWinner(scoreUser, scoreComputer, tiedGames);
