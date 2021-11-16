@@ -1,19 +1,16 @@
-//ask user to choose rock/paper/scissors
-//change input to uppercase for case check
-//check if user chose one of the 3 options else inform them that the input is incorrect.
-
-function humanPlay() {
+//Gets user Input. If the input is incorrect requests it again.
+function getUserInput() {
   let userInput = prompt("Rock, Paper, or Scissors?", "");
-  checkInput(userInput);
-  while (checkInput(userInput) === false) {
+  checkUserInput(userInput);
+  while (checkUserInput(userInput) === false) {
     alert("Incorrect Input!");
     userInput = prompt("Rock, Paper, or Scissors?", "");
-    checkInput(userInput);
+    checkUserInput(userInput);
   }
   return userInput;
 }
-
-function checkInput(userChoice) {
+//Checks if user input is correct
+function checkUserInput(userChoice) {
   userChoice = userChoice.toUpperCase();
   if (
     userChoice === "ROCK" ||
@@ -26,13 +23,18 @@ function checkInput(userChoice) {
   }
 }
 
-//create random computer variable for rock/paper/scissors and inform user
-function computerPlay() {
-  const choices = ["Rock", "Paper", "Scissors"];
-  let randomNum = Math.floor(Math.random() * choices.length);
-  return choices[randomNum];
+//create random computer input
+function getComputerInput() {
+  const options = ["Rock", "Paper", "Scissors"];
+  let randomNum = Math.floor(Math.random() * options.length);
+  return options[randomNum];
 }
-// compare user variable to computer variable and inform user of the result
+//Arrays to keep score of the games played
+let tiedGames = [];
+let scoreUser = [];
+let scoreComputer = [];
+
+// compare user variable to computer variable, inform user of the result, add result to the score arrays.
 function determineWinner(user, computer) {
   user = user.toUpperCase();
   computer = computer.toUpperCase();
@@ -55,16 +57,15 @@ function determineWinner(user, computer) {
     );
   }
 }
-let tiedGames = [];
-let scoreUser = [];
-let scoreComputer = [];
-
+//Let's play alert
+alert("Let's play Rock, Paper, Scissors!");
+//Play the game 5 times
 for (let i = 1; i <= 5; i++) {
   alert(`Round: ${i}`);
-  determineWinner(humanPlay(), computerPlay());
+  determineWinner(getUserInput(), getComputerInput());
 }
-
-function overallWinner(scoreOne, scoreTwo, scoreThree) {
+//Determine winner of the 5 games. Inform the user of the scores.
+function determineOverallWinner(scoreOne, scoreTwo, scoreThree) {
   if (scoreOne.length > scoreTwo.length) {
     return alert(`You are a winner! 
     You: ${scoreOne.length} 
@@ -82,4 +83,4 @@ function overallWinner(scoreOne, scoreTwo, scoreThree) {
     Tied Games: ${scoreThree.length}`);
   }
 }
-overallWinner(scoreUser, scoreComputer, tiedGames);
+determineOverallWinner(scoreUser, scoreComputer, tiedGames);
