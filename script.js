@@ -30,9 +30,9 @@ function getComputerInput() {
   return options[randomNum];
 }
 //Arrays to keep score of the games played
-let tiedGames = [];
-let scoreUser = [];
-let scoreComputer = [];
+const tiedGames = [];
+const scoreUser = [];
+const scoreComputer = [];
 
 // compare user variable to computer variable, inform user of the result, add result to the score arrays.
 function determineWinner(user, computer) {
